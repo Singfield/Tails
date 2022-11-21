@@ -1,10 +1,11 @@
 #!/bin/bash
 
 directory="src/"
-build_directory="bin"
+build_directory="bin/"
 log_file="./log.txt"
 counter=0
 compiler="clang"
+
 
 #colors output
 
@@ -38,7 +39,7 @@ echo "                                                                          
 echo "${lime_yellow}${italic}  I can fail, like a yellow fox 's gadgets, so improve me.${normal} "
 echo "                                                                             "    
 
-. ./build-options.sh
+source Tails/build-options.sh
 
 if [ -z "$(which inotifywait)" ]; then
     echo "inotifywait not installed."
@@ -75,28 +76,35 @@ function build_directory(){
 # clang --print-supported-cpus
 # https://clang.llvm.org/docs/CrossCompilation.html
 function build(){
+    sleep 1
     counter=$((counter+1))
     echo "${yellow} Detected change n. $counter ${normal}"
     echo "${blue} building... ($compiler) ${normal}"
     build_directory
-   clang -target $BUILD_OPTION -std=c99 src/*.c -o ./bin/executable
+   clang -target $BUILD_OPTION -std=c99 $directory/*.c -o $build_directory/executable
 }
 
 function execute() {
-    sleep .5
-    ./bin/executable && echo
+    sleep 1
+    $build_directory/executable
 }
 
-inotifywait -q -r  -m -e modify,delete,create $directory --exclude $build_directory  | while read DIRECTORY EVENT FILE; do
-    case $EVENT in
-        MODIFY*)
-            clear && build && execute
-            ;;
-        CREATE*)
-            clear && build
-            ;;
-        DELETE*)
-            clear && build
-            ;;
-    esac
-done
+inotifywait -q -r  -m -e modify,delete,create $directory --exclude $build_directory& wait |
+\
+clear
+build 
+execute
+
+# do
+#     case $EVENT in
+#         MODIFY*)
+            
+#             ;;
+#         CREATE*)
+#             clear && build
+#             ;;
+#         DELETE*)
+#             clear && build
+#             ;;
+#     esac
+# done
