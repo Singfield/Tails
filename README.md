@@ -6,7 +6,7 @@ My own home made build system
 
 ## why ?
 
-I want to learn more about low level coding and pratices. So I decided to go back to C lang ( I glimpsed far ago).
+I want to learn more about low level coding and pratices. So I decided to go back to C lang ( I've glimpsed it  long time ago) and Rust.
 I just don't want to study Cmake and want to have an equivalent to nodemon / npm run dev.
 
 I will post in this repo my fails and my success. 
