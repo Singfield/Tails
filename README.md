@@ -15,12 +15,11 @@ I'm beggining with bash/inotify but I will certainly change for other tech.
 My only constraint is to make it usable on any platform
 
 As I want to be a Rust dev I will certainly try do refactor it in this language ;)
+but I love JS...
 
 
 ## commands
 
 run ./run.sh
 
-
-> not working currently need to investigate on inotify wait
 
