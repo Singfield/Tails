@@ -14,7 +14,7 @@ I will post in this repo my fails and my success.
 I'm beggining with bash/inotify but I will certainly change for other tech.
 My only constraint is to make it usable on any platform
 
-As I want to be a Rust dev I will cerntainly try do refactor it in this language ;)
+As I want to be a Rust dev I will certainly try do refactor it in this language ;)
 
 
 ## commands
