@@ -88,17 +88,23 @@ function execute() {
     sleep 1
     $build_directory/executable
 }
+# https://www.shell-tips.com/linux/how-to-reload-shell/#gsc.tab=0
 
-inotifywait -q -r  -m -e modify,delete,create $directory --exclude $build_directory& wait |
-\
-clear
-build 
-execute
+# https://bbs.archlinux.org/viewtopic.php?id=186989
+function main() {
+    echo "bla"
+    exec "$SHELL"
+    clear
+    build 
+    execute && echo
+}
+
+inotifywait -q -r  -m -e modify,delete,create $directory --exclude $build_directory && main
+
 
 # do
 #     case $EVENT in
 #         MODIFY*)
-            
 #             ;;
 #         CREATE*)
 #             clear && build
@@ -108,3 +114,4 @@ execute
 #             ;;
 #     esac
 # done
+
